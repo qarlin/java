@@ -1,0 +1,197 @@
+
+ul.list-group li.list-group-item:nth-child(even) {
+
+    background: #f3f3f3;
+
+}
+
+/*
+Overwrite Bootstrap Section
+*/
+
+.navbar {
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+/*
+Seccion
+*/
+
+body {
+
+    background: #b7bcaf;
+
+}
+
+.pageNav {
+
+    padding: 0px 50px;
+
+}
+
+#header {
+
+    background: #ffffff;
+
+}
+
+#content {
+
+    padding: 20px 5%;
+
+}
+
+.column-titles {
+
+    text-align: center;
+
+    color: #99cc66;
+
+}
+
+.columns-align {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+}
+
+.line-title {
+
+    display: block;
+
+    border-color: #99cc66;
+
+    border-width: 1px;
+
+    border-style: solid;
+
+    margin: 0px 20px;
+
+}
+
+.category {
+
+    border-left-style: solid;
+
+    border-left-width: 10px;
+
+    border-left-color: transparent;
+
+}
+
+/*.list-group-item {*/
+
+/*padding: 10px;*/
+
+/*}*/
+
+.result-container {
+
+    /*display: table;*/
+
+    height: 100px;
+
+    padding: 5px 5px;
+
+}
+
+.result-container div {
+
+    vertical-align: middle;
+
+    height: inherit;
+
+}
+
+.center-block {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    display: table-cell;
+
+}
+
+.table > tbody > tr > td.center {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+}
+
+.table > thead > tr {
+
+    background: #ffc554;
+
+}
+
+.table > thead > tr > th.center {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+}
+
+.modal-header {
+
+    background: #ffc554;
+
+}
+
+/*
+DATALIST CSS 
+*/
+.datalist {
+	/*margin: 10px;*/
+	background: #f8f7f4;
+	border: none;
+}
+
+.datalist-header {
+	background: #a4caca;
+	text-align: center;
+}
+
+.datalist-body {
+	padding: 0px;
+}
+.datalist-line {
+	text-align: center;
+	display: table;
+	margin: 0px;
+}
+
+.datalist-set {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+	border-bottom-color: #cccccc;
+}
+
+.datalist-set:last-child {
+	border-bottom-style: none;
+}
+
+.datalist-column {
+	display: table-cell;
+    vertical-align: middle;
+    float: none;
+}
+
+.datalist-column-left {
+	display: table-cell;
+    vertical-align: middle;
+    float: none;
+    text-align: left;;
+}
+.datalist-collapse {
+	background: #e3e2df;
+	padding: 15px;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}

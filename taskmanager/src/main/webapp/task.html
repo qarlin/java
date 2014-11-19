@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Task Browser</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.starrr.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+</head>
+
+<body ng-app="TaskApp">
+    <div id="header">
+        <nav class="navbar navbar-inverse">
+            <a class="navbar-brand" href="#">Logo</a>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div id="content">
+        <div class="panel datalist" ng-controller="TaskController">
+            <div class="panel-heading datalist-header">
+                <div class="row">
+                    <div class="col-md-1">
+                        <h4>Id</h4>
+                    </div>
+                    <div class="col-md-5">
+                        <h4>Name</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>Executions</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>Schedules</h4>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>Operations</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body datalist-body">
+                <div class="datalist-set" ng-repeat="task in taskList">
+                    <div class="row datalist-line category" ng-style="setColor(task)">
+                        <div class="col-md-1 datalist-column">
+                        	<span class="fa-stack">
+  								<i class="fa fa-circle fa-stack-2x"></i>
+  								<i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+							</span>
+                        </div>
+                        <div class="col-md-5 datalist-column-left">
+                            <h4>{{task.name}} - {{task.uid}}</h4>
+                            <p>Created: 30/04/2014</p>
+                        </div>
+                        <div class="col-md-2 datalist-column">
+                            <div class="starrr" data-rating="{{task.viewAttributes.stars}}"></div>
+                        </div>
+                        <div class="col-md-2 datalist-column">
+                            {{task.executionLogs.length}}
+                        </div>
+                        <div class="col-md-2 datalist-column">
+                            <a class="expand-buttom" href="#collapse{{task.uid}}">open</a>
+                        </div>
+                    </div>
+<!--                     <div class="panel-collapse collapse in">
+                        <div class="datalist-collapse">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
+                            beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+
+    </div>
+
+    <script type="text/javascript" src="assets/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="assets/js/lib/underscore.js"></script>
+    <script type="text/javascript" src="assets/js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="assets/js/lib/angular.js"></script>
+    <script type="text/javascript" src="assets/js/lib/angular-route.js"></script>
+    <script type="text/javascript" src="assets/js/lib/jquery.starrr.min.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/controllers.js"></script>
+    <script type="text/javascript" src="assets/js/services.js"></script>
+</body>
+
+</html>
