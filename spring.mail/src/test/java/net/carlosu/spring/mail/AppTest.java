@@ -1,4 +1,4 @@
-package net.carlosu.test.xslt;
+package net.carlosu.spring.mail;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
