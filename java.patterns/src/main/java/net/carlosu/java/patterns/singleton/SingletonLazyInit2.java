@@ -23,7 +23,6 @@ public class SingletonLazyInit2 {
 		}
 
 		private void initialize() {
-			// TODO Auto-generated method stub
 			
 		}
 }

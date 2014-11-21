@@ -1,7 +1,5 @@
 package net.carlosu.test.xslt;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.io.StringWriter;
 
