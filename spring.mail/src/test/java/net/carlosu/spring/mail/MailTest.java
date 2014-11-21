@@ -16,7 +16,7 @@ import org.subethamail.wiser.WiserMessage;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:mail-context.xml" })
-public class mailTest extends AbstractJUnit4SpringContextTests {
+public class MailTest extends AbstractJUnit4SpringContextTests {
 	private Wiser wiser;
 	@Autowired
 	MailService mailService;
