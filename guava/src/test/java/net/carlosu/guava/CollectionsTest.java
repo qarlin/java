@@ -1,5 +1,8 @@
 package net.carlosu.guava;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasKey;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +55,7 @@ public class CollectionsTest {
 				});
 
 		Assert.assertEquals(3, ids.size());
+		Assert.assertThat(ids, contains(1,2,3));
 	}
 
 	@Test
@@ -64,6 +68,7 @@ public class CollectionsTest {
 				});
 
 		Assert.assertEquals(3, prodById.size());
+		Assert.assertThat(prodById, hasKey(Integer.valueOf(3)));
 	}
 
 	@Test
@@ -90,7 +95,6 @@ public class CollectionsTest {
 		Assert.assertEquals(2, list.size());
 
 		Assert.assertFalse(Iterables.isEmpty(filtered));
-		;
 	}
 
 	@Test
@@ -122,5 +126,6 @@ public class CollectionsTest {
 				.put(2, "two")
 				.put(3, "three").build();
 		Assert.assertEquals(3, numbers.size());
+		Assert.assertThat(numbers, hasKey(1));
 	}
 }
