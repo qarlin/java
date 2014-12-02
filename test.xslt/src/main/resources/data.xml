@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<report>
+	<type>CREATE</type>
+	<startTime>11:50:11</startTime>
+	<endTime>12:25:12</endTime>
+	<total>4</total>
+	<sources>
+		<source>
+			<key>25</key>
+			<startTime>11:50:25</startTime>
+			<endTime>11:50:26</endTime>
+			<preCall>true</preCall>
+			<ejbCall>true</ejbCall>
+			<postCall>true</postCall>
+			<contracts>
+				<contract>
+					<id>7699789</id>
+					<status>O</status>
+					<bargainRef>C00994949</bargainRef>
+				</contract>
+			</contracts>
+		</source>
+	</sources>
+</report>
+   

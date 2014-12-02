@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+	body {
+		background-color: gray;
+		margin: 0;
+		font-family: Verdana, Geneva, sans-serif;
+	}
+	
+	.summaryContainer {
+		background-color: blue;
+		margin: 0px;
+		border: 0px;
+		padding: 0px;
+	}
+	
+	.summaryHeader {
+		background-color: yellow;
+		margin: 0px;
+		border: 0px;
+		padding: 0px;
+		height: 35px;
+	}
+	
+	.summaryBody {
+		background-color: red;
+		vertical-align: top;
+		height: 150px;
+		margin: 0px;
+		border: 0px;
+		padding: 0px;
+		display: table;
+		width: 100%;
+	}
+	
+	.box {
+		display: table-cell;
+		background-color: green;
+		padding: 20px;
+	}
+	
+	.init {
+		width: 100px;
+	}
+	.box h5{
+		margin: 0px;
+		padding: 6px;
+		border-bottom-style: solid;
+		color: red;
+	}
+	.boxBody {
+		vertical-align: middle;
+	}
+	
+	.big{
+		text-align: center;
+		font-size: 25pt;
+		font-weight: bolder;
+	}
+	
+	.boxNew {
+		display: block;
+	}
+</style>
+</head>
+<body>
+	<div class="summaryContainer">
+		<div class="summaryHeader">
+			
+		</div>
+		<div class="summaryBody">
+			<div class="box init">
+				<h5>Total</h5>
+				<div class="boxBody">
+					<p class="big">8</p>
+				</div>
+			</div>
+			<div class="box">
+				<h5>Time</h5>
+				<div class="boxBody">
+					<p>Start: 15:00</p>
+					<p>End: 16:00</p>
+				</div>
+			</div>
+			<div class="boxNew">
+				<table>
+					<thead>
+						<tr>
+							<th>Contract Id</th>
+							<th>Status</th>
+							<th>Bargain Ref</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

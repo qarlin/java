@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+	body {
+		background-color: gray;
+		margin: 0;
+		font-family: Verdana, Geneva, sans-serif;
+	}
+	
+	.summarySection {
+		background-color: activecaption;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.summaryHeader {
+		background-color: black;
+		color: white;
+		padding: 0px;
+		vertical-align: middle;
+	}
+	
+	.summaryBody {
+		padding: 0px;
+		height: 150px;
+		margin: 0px;
+		vertical-align: middle;
+	}
+	
+	.total {
+		width: 150px;
+		float: left;
+		text-align: center;
+		vertical-align: middle;
+		background-color: blue;
+		height: 150px;
+	}
+	
+	.totalNumber {
+		font-size: 20pt;
+		font-weight: bolder;
+	}
+	.time {
+		float: left;
+		background-color: red;
+		height: 150px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	.title {
+		border-bottom-width: 1;
+		border-bottom-style: solid;
+		color: blue;
+		background: orange;
+	}
+	
+	h5 {
+		padding: 2px;
+		margin: 2px;
+	}
+	
+	p {
+		font-size: 8pt;
+	}
+	
+	
+	
+	.container {
+		height: 150px;
+		background-color: red;
+		vertical-align: top;
+	}
+	
+	.box {
+		display: inline-block;
+		vertical-align: top;
+	}
+	
+	.values {
+		vertical-align: middle;
+	}
+</style>
+</head>
+<body>
+	<div class="summarySection">
+		<div class="summaryHeader">
+			<h3>Create Contract</h3>
+		</div>
+		<div class="container">
+			<div class="box">
+				<div class="title">
+					<h5>Total</h5>
+				</div>
+				<div class="values">
+					<p class="totalNumber">8</p>
+				</div>
+			</div>
+			<div class="box">
+				<div class="title">
+					<h5>Time</h5>
+				</div>
+				<div class="values">
+					<p>Start: 12:25</p>
+					<p>End: 12:26</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="detailsSection">
+		<div class="detailsHeader"></div>
+		<div class="detailsBody">
+			<div class="sourceSection">
+				<div class="sourceInfo"></div>
+				<div class="contract"></div>
+				<div class="message"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
