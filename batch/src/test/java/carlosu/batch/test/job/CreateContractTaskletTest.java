@@ -1,4 +1,4 @@
-package carlosu.batch.test.tasklet;
+package carlosu.batch.test.job;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 
-import carlosu.batch.tasklets.CreateContractTasklet;
+import carlosu.batch.jobs.tasklets.CreateContractTasklet;
 
 public class CreateContractTaskletTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();

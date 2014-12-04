@@ -1,4 +1,4 @@
-package com.cgi.db.batch;
+package carlosu.batch;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

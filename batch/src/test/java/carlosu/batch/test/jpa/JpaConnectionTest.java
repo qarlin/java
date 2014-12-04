@@ -2,10 +2,8 @@ package carlosu.batch.test.jpa;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -23,8 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import carlosu.dao.InstructionJPADao;
-import carlosu.model.Instruction;
+import carlosu.batch.domain.Instruction;
+import carlosu.batch.repository.jpa.InstructionJPADao;
 
 @ContextConfiguration(locations = { "classpath*:spring/batch-jpa-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)

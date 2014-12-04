@@ -1,4 +1,4 @@
-package carlosu.dao.generic;
+package carlosu.batch.repository;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@
     </job>
 
     <bean id="createContractTasklet" 
-          class="carlosu.batch.tasklets.CreateContractTasklet" />
+          class="carlosu.batch.jobs.tasklets.CreateContractTasklet" />
 
     <bean id="jobLauncher" 
           class="org.springframework.batch.core.launch.support.SimpleJobLauncher"

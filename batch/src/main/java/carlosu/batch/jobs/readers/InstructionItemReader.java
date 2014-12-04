@@ -1,18 +1,18 @@
-package carlosu.batch.reader;
+package carlosu.batch.jobs.readers;
 
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.batch.item.ItemReader;
 
-import carlosu.dao.InstructionDAO;
-import carlosu.model.Instruction;
+import carlosu.batch.domain.Instruction;
+import carlosu.batch.repository.InstructionDao;
 
 public class InstructionItemReader implements ItemReader<Instruction>{
 	private ItemReader<Instruction> instructionReader;
-    private InstructionDAO instructionDAO;
+    private InstructionDao instructionDAO;
     
-	public void setInstructionDAO(InstructionDAO instructionDao) {
+	public void setInstructionDAO(InstructionDao instructionDao) {
 		this.instructionDAO = instructionDao;
 	}
 

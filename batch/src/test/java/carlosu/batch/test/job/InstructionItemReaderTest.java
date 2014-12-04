@@ -1,4 +1,4 @@
-package carlosu.batch.test;
+package carlosu.batch.test.job;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,15 +14,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.batch.item.ItemReader;
 
-import carlosu.batch.reader.InstructionItemReader;
-import carlosu.dao.InstructionDAO;
-import carlosu.model.Contract;
-import carlosu.model.Instruction;
+import carlosu.batch.domain.Contract;
+import carlosu.batch.domain.Instruction;
+import carlosu.batch.jobs.readers.InstructionItemReader;
+import carlosu.batch.repository.InstructionDao;
 
 public class InstructionItemReaderTest {
 	private InstructionItemReader reader;
 	@Mock
-	private InstructionDAO instructionDAO;
+	private InstructionDao instructionDAO;
 	@Mock
 	private ItemReader<Instruction> instructionReader;
 

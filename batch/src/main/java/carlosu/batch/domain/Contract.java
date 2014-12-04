@@ -1,4 +1,4 @@
-package carlosu.model;
+package carlosu.batch.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

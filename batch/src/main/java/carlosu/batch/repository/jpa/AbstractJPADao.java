@@ -1,4 +1,4 @@
-package carlosu.dao;
+package carlosu.batch.repository.jpa;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import carlosu.batch.repository.AbstractDao;
 
 public class AbstractJPADao<T, ID> implements AbstractDao<T, ID> {
 

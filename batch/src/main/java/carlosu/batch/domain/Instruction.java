@@ -1,4 +1,4 @@
-package carlosu.model;
+package carlosu.batch.domain;
 
 import java.util.List;
 
