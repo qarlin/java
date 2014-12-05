@@ -32,6 +32,7 @@ public class InstructionJPADao extends AbstractJPADao<Instruction, Long> impleme
 	@Override
 	public List<Instruction> getInstructions(Date bizDay) {
 		TypedQuery<Instruction> query = entityManager.createNamedQuery("findNativeInstruction", Instruction.class);
+		query.setParameter("bizday", bizDay);
 		return query.getResultList();
 	}
 	@Override
