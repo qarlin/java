@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <Instruction id="1" commentId="comment 1" />
-    <Instruction id="2" commentId="comment 2" />
-    <Instruction id="3" commentId="comment 3" />
+    <Instruction instructionId="1" commentId="comment 1" bizDay="2014-01-01"/>
+    <Instruction instructionId="2" commentId="comment 2" bizDay="2014-01-01"/>
+    <Instruction instructionId="3" commentId="comment 3" bizDay="2014-01-01"/>
+    <Instruction instructionId="4" commentId="comment 4" bizDay="2014-01-02"/>
+    <Contract contractId="1" instructionId="1" externalId="RDV2014010100001" />
 </dataset>

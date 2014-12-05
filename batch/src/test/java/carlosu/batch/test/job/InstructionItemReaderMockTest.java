@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,13 +18,13 @@ import carlosu.batch.domain.Instruction;
 import carlosu.batch.jobs.readers.InstructionItemReader;
 import carlosu.batch.repository.InstructionDao;
 
-public class InstructionItemReaderTest {
+public class InstructionItemReaderMockTest {
 	private InstructionItemReader reader;
 	@Mock
 	private InstructionDao instructionDAO;
 	@Mock
 	private ItemReader<Instruction> instructionReader;
-
+	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
@@ -51,7 +50,7 @@ public class InstructionItemReaderTest {
 	@Test
     public void testReadWithCustomer() throws Exception {
 		Instruction instruction = new Instruction();
-		instruction.setId(1L);
+		instruction.setInstructionId(1L);
 		instruction.setCommentId("CLS001");
 
         when(instructionReader.read()).thenReturn(instruction);
@@ -65,17 +64,7 @@ public class InstructionItemReaderTest {
 
         Instruction instruction1 = reader.read();
 
-        assertEquals(instruction.getId(), instruction1.getId());
+        assertEquals(instruction.getInstructionId(), instruction1.getInstructionId());
         assertEquals(1, instruction1.getContracts().size());
     }
-	
-	@SuppressWarnings("serial")
-	@Test
-	public void testArrayList(){
-		List<String> list = new ArrayList<String>(){{
-			   add("A");
-			   add("B");
-			}};
-		assertEquals(2, list.size());;
-	}
 }

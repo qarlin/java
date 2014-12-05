@@ -25,4 +25,6 @@
 
     <bean id="transactionManager" 
           class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+
+	<import resource="classpath:spring/batch-jpa-context.xml"/>
 </beans>
