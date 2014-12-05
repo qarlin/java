@@ -10,25 +10,32 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
-import org.junit.After;
-import org.junit.Before;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.TestContext;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AbstractTestExecutionListener;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-public class DBConnectionTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@TestExecutionListeners(listeners = {
+        DependencyInjectionTestExecutionListener.class, 
+        DBConnectionTest.class})
+public class DBConnectionTest extends AbstractTestExecutionListener{
 
-	@Autowired
 	private DataSource dataSource;
-
-	@Before
-	public void setUp() throws Exception {
-		DatabaseOperation.CLEAN_INSERT.execute(getConnection(), getDataSet()); 
-	}
-
-	@After  
-    public void after() throws Exception{  
-        DatabaseOperation.DELETE_ALL.execute(getConnection(), getDataSet());  
-    } 
 	
+	@Override
+    public void afterTestClass(TestContext testContext) throws Exception {
+		DatabaseOperation.DELETE_ALL.execute(getConnection(), getDataSet()); 
+    }
+
+    @Override
+    public void beforeTestClass(TestContext testContext) throws Exception {
+    	dataSource = (DataSource) testContext.getApplicationContext().getBean("dataSource");
+    	DatabaseOperation.CLEAN_INSERT.execute(getConnection(), getDataSet()); 
+    }
+    
 	private IDataSet getDataSet() throws Exception {
 		FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
 		InputStream is = ClassLoader.getSystemResourceAsStream("init-script.xml");
@@ -41,4 +48,6 @@ public class DBConnectionTest {
 		IDatabaseConnection connection = new DatabaseConnection(con);
 		return connection;
 	}
+	
+
 }

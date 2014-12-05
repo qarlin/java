@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,12 @@ public class CreateContractTest extends DBConnectionTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		super.setUp();
+		//super.setUp();
 		bizDate = LocalDate.parse(bizDay);
 		
 	}
 
+	@Ignore
 	@Test
 	public void testGetAllValidInstructions(){
 		List<Instruction> instructions = instructionDao.getInstructions(bizDate.toDate());
@@ -43,7 +45,7 @@ public class CreateContractTest extends DBConnectionTest {
 		List<Contract>	contracts = instructionDao.getContracts(bizDate.toDate());
 		assertEquals(1, contracts.size());
 		
-		List<Instruction> instructions = instructionDao.getInstructions(bizDate.toDate());
+		List<Instruction> instructions = instructionDao.getAllInstructions(bizDate.toDate());
 		List<Instruction> allInstructions = instructionDao.findAll();
 		assertEquals(4, allInstructions.size());
 		assertEquals(3, instructions.size());

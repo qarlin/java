@@ -5,17 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Transient;
 
 @NamedQueries({
@@ -24,12 +19,12 @@ import javax.persistence.Transient;
 	@NamedQuery(name = "findAllInstructions", 
 			query = "SELECT i FROM Instruction i")
 })
-@NamedNativeQueries({
+/*@NamedNativeQueries({
 	@NamedNativeQuery(name = "findNativeInstruction", resultClass = Instruction.class, 
 			query = "SELECT i.instructionId, i.bizDay, i.commentId " 
 					+ "FROM instruction i LEFT JOIN contract c ON (i.instructionId = c.instructionId) "
 					+ "WHERE c.contractId is null")
-})
+})*/
 @Entity
 public class Instruction {
 	@Id

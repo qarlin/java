@@ -3,7 +3,6 @@ package carlosu.batch.repository.jpa;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;

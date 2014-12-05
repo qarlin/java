@@ -24,6 +24,6 @@ public class JpaConnectionTest extends DBConnectionTest {
 	@Test
 	public void test() {
 		List<Instruction> instructions = instructionDao.findAll();
-		assertEquals(3, instructions.size());
+		assertEquals(4, instructions.size());
 	}
 }
