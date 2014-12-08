@@ -1,4 +1,4 @@
-package carlosu.batch.test.job;
+package carlosu.batch.test.common;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -12,15 +12,10 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.TestContext;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestExecutionListeners(listeners = {
-        DependencyInjectionTestExecutionListener.class, 
-        DBConnectionTest.class})
 public class DBConnectionTest extends AbstractTestExecutionListener{
 
 	private DataSource dataSource;

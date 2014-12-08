@@ -10,15 +10,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import carlosu.batch.domain.Contract;
 import carlosu.batch.domain.Instruction;
 import carlosu.batch.repository.jpa.InstructionJPADao;
+import carlosu.batch.test.common.DBConnectionTest;
 
 @ContextConfiguration(locations = {"classpath*:spring/batch-createcontract-context.xml"})
+@TestExecutionListeners(listeners = {
+        DependencyInjectionTestExecutionListener.class, 
+        DBConnectionTest.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class CreateContractTest extends DBConnectionTest {
+public class CreateContractTest{
 	@Autowired
 	private InstructionJPADao instructionDao;
 	
