@@ -13,8 +13,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.batch.item.ItemReader;
 
-import carlosu.batch.domain.Contract;
-import carlosu.batch.domain.Instruction;
+import carlosu.batch.domain.contract.Contract;
+import carlosu.batch.domain.contract.Instruction;
 import carlosu.batch.jobs.readers.InstructionItemReader;
 import carlosu.batch.repository.InstructionDao;
 

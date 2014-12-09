@@ -1,4 +1,4 @@
-package carlosu.batch.domain;
+package carlosu.batch.domain.contract;
 
 import java.math.BigDecimal;
 import java.util.Date;

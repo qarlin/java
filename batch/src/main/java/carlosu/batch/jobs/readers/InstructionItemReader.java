@@ -5,7 +5,7 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.batch.item.ItemReader;
 
-import carlosu.batch.domain.Instruction;
+import carlosu.batch.domain.contract.Instruction;
 import carlosu.batch.repository.InstructionDao;
 
 public class InstructionItemReader implements ItemReader<Instruction>{

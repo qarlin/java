@@ -7,29 +7,44 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-
-	<bean id="entityManagerFactory"
+    
+	<bean id="entityManagerFactory1"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		p:dataSource-ref="dataSource" 
+		p:persistenceUnitName="contractUnit"
+		p:dataSource-ref="dataSource1" 
 		p:jpaVendorAdapter-ref="hibernateVendor"
-		p:packagesToScan="carlosu.batch.domain"
-		p:persistenceUnitName="DefaultPersistenceUnit"/>
-		
+		p:packagesToScan="carlosu.batch.domain.contract"/>
+
+	<bean id="entityManagerFactory2"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:persistenceUnitName="tcontractUnit"
+		p:dataSource-ref="dataSource2" 
+		p:jpaVendorAdapter-ref="hibernateVendor"
+		p:packagesToScan="carlosu.batch.domain.tcontract"/>
+			
 	<bean id="hibernateVendor" 
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
         p:showSql="false"
         p:generateDdl="true"
         p:database="H2"/>
                 
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-		p:entityManagerFactory-ref="entityManagerFactory" />
+	<bean id="transactionManager1" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory1" />
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+	<bean id="transactionManager2" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory2" />
+		
+	<bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="org.h2.Driver"
 		p:url="jdbc:h2:mem:contract;DB_CLOSE_DELAY=-1" 
 		p:username="sa" 
 		p:password="" />
-		
+	
+	<bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="org.h2.Driver"
+		p:url="jdbc:h2:mem:tcontract;DB_CLOSE_DELAY=-1" 
+		p:username="sa" 
+		p:password="" />	
 	<tx:annotation-driven />
 
 	<context:component-scan base-package="carlosu.batch.repository" />

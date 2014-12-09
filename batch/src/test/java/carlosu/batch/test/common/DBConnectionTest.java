@@ -22,12 +22,13 @@ public class DBConnectionTest extends AbstractTestExecutionListener{
 	
 	@Override
     public void afterTestClass(TestContext testContext) throws Exception {
+		dataSource = (DataSource) testContext.getApplicationContext().getBean("dataSource1");
 		DatabaseOperation.DELETE_ALL.execute(getConnection(), getDataSet()); 
     }
 
     @Override
     public void beforeTestClass(TestContext testContext) throws Exception {
-    	dataSource = (DataSource) testContext.getApplicationContext().getBean("dataSource");
+    	dataSource = (DataSource) testContext.getApplicationContext().getBean("dataSource1");
     	DatabaseOperation.CLEAN_INSERT.execute(getConnection(), getDataSet()); 
     }
     
