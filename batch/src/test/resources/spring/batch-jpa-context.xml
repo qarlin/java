@@ -47,5 +47,5 @@
 		p:password="" />	
 	<tx:annotation-driven />
 
-	<context:component-scan base-package="carlosu.batch.repository" />
+	<context:component-scan base-package="carlosu.batch" />
 </beans>

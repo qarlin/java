@@ -18,29 +18,31 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DBConnectionTest extends AbstractTestExecutionListener{
 
-	private DataSource dataSource;
-	
 	@Override
     public void afterTestClass(TestContext testContext) throws Exception {
-		dataSource = (DataSource) testContext.getApplicationContext().getBean("dataSource1");
-		DatabaseOperation.DELETE_ALL.execute(getConnection(), getDataSet()); 
+		DataSource dataSource1 = (DataSource) testContext.getApplicationContext().getBean("dataSource1");
+		DataSource dataSource2 = (DataSource) testContext.getApplicationContext().getBean("dataSource2");
+		DatabaseOperation.DELETE_ALL.execute(getConnection(dataSource1), getDataSet("init-script-db1.xml")); 
+		DatabaseOperation.DELETE_ALL.execute(getConnection(dataSource2), getDataSet("init-script-db2.xml")); 
     }
 
     @Override
     public void beforeTestClass(TestContext testContext) throws Exception {
-    	dataSource = (DataSource) testContext.getApplicationContext().getBean("dataSource1");
-    	DatabaseOperation.CLEAN_INSERT.execute(getConnection(), getDataSet()); 
+    	DataSource dataSource1 = (DataSource) testContext.getApplicationContext().getBean("dataSource1");
+    	DataSource dataSource2 = (DataSource) testContext.getApplicationContext().getBean("dataSource2");
+    	DatabaseOperation.CLEAN_INSERT.execute(getConnection(dataSource1), getDataSet("init-script-db1.xml"));
+    	DatabaseOperation.CLEAN_INSERT.execute(getConnection(dataSource2), getDataSet("init-script-db2.xml")); 
     }
     
-	private IDataSet getDataSet() throws Exception {
+	private IDataSet getDataSet(String file) throws Exception {
 		FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
-		InputStream is = ClassLoader.getSystemResourceAsStream("init-script.xml");
+		InputStream is = ClassLoader.getSystemResourceAsStream(file);
 		IDataSet dataSet = builder.build(is);
 		return dataSet;
 	}
 
-	private IDatabaseConnection getConnection() throws Exception {
-		Connection con = dataSource.getConnection();
+	private IDatabaseConnection getConnection(DataSource ds) throws Exception {
+		Connection con = ds.getConnection();
 		IDatabaseConnection connection = new DatabaseConnection(con);
 		return connection;
 	}

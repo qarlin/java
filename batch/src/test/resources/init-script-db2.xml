@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <TContract contractId="1" externalId="RDV2014010100001" status="O" notes="no notes"/>
+    <TContract contractId="2" externalId="RDV2014010100002" status="O" notes="no notes 2"/>
+    <TMessage messageId="1" status="X" externalId="RDV2014010100001" comments="no comments"/>
+    <TMessage messageId="2" status="X" externalId="RDV2014010100002" comments="no comments 2"/>
+</dataset>

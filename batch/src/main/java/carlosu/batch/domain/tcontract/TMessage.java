@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
 public class TMessage {
@@ -16,10 +15,8 @@ public class TMessage {
 	private String comments;
 	@Column
 	private String status;
-	//@OneToOne
-	//@JoinColumn(name="externalId")
-	@Transient
-	private TContract externalId;
+	@Column
+	private String externalId;
 	
 	public Long getMessageId() {
 		return messageId;
@@ -39,10 +36,10 @@ public class TMessage {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public TContract getExternalId() {
+	public String getExternalId() {
 		return externalId;
 	}
-	public void setExternalId(TContract externalId) {
+	public void setExternalId(String externalId) {
 		this.externalId = externalId;
 	}
 }
