@@ -15,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
 
+import carlosu.batch.domain.tcontract.TContract;
+
 @NamedQueries({
 	@NamedQuery(name = "findInstructions", 
 			query = "SELECT i FROM Instruction i WHERE i.bizDay = :bizday"),
@@ -42,6 +44,8 @@ public class Instruction {
 	private Date bizDay;
 	@Transient
 	private List<Contract> contracts;
+	@Transient
+	private List<TContract> tContracts;
 	
 	public String getCommentId() {
 		return commentId;
@@ -78,5 +82,16 @@ public class Instruction {
 	}
 	public void setBizDay(Date bizDay) {
 		this.bizDay = bizDay;
+	}
+	public String getExternalId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void setTContracts(List<TContract> contracts) {
+		this.tContracts = contracts;
+	}
+	
+	public List<TContract> getTContracts(){
+		return tContracts;
 	}
 }

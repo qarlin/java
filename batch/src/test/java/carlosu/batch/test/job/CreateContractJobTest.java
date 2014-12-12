@@ -15,6 +15,7 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,6 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class CreateContractJobTest {
 
 	@Autowired
+	@Qualifier(value = "CreateContractJob")
     private Job job;
     @Autowired
     private JobLauncher jobLauncher;
@@ -31,9 +33,7 @@ public class CreateContractJobTest {
     @Test
     public void launchJob() throws Exception {
         JobExecution jobExecution = jobLauncher.run(job, new JobParameters());
-
         assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
-
         assertEquals("Hello World!", outContent.toString());
     }
 
@@ -46,4 +46,4 @@ public class CreateContractJobTest {
     public void cleanUpStreams() {
         System.setOut(null);
     }
-}
+ }

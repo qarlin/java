@@ -3,28 +3,83 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:batch="http://www.springframework.org/schema/batch"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<import resource="classpath:spring/batch-jpa-context.xml" />
 
 	<job id="CreateContractJob" xmlns="http://www.springframework.org/schema/batch">
-        <step id="CreateContractStep" >
-            <tasklet ref="createContractTasklet" />
-        </step>
-    </job>
+		<step id="CreateContractStep">
+			<tasklet ref="createContractTasklet" />
+		</step>
+	</job>
 
-    <bean id="createContractTasklet" 
-          class="carlosu.batch.jobs.tasklets.CreateContractTasklet" />
+	<bean id="createContractTasklet" class="carlosu.batch.jobs.tasklets.CreateContractTasklet" />
 
-    <bean id="jobLauncher" 
-          class="org.springframework.batch.core.launch.support.SimpleJobLauncher"
-          p:jobRepository-ref="jobRepository" />
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher"
+		p:jobRepository-ref="jobRepository" />
 
-    <bean id="jobRepository" 
-          class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"
-          p:transactionManager-ref="transactionManager" />
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"
+		p:transactionManager-ref="transactionManager" />
 
-    <bean id="transactionManager" 
-          class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+	<bean id="transactionManager"
+		class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
 
-	<import resource="classpath:spring/batch-jpa-context.xml"/>
+	<job id="instructionJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="step1">
+			<tasklet>
+				<chunk reader="instructionItemReader" processor="instructionProcessor"
+					writer="instructionXMLWriter" commit-interval="5" />
+			</tasklet>
+		</step>
+	</job>
+
+	<!-- Reader -->
+	<bean id="instructionItemReader"
+		class="org.springframework.batch.item.database.JpaPagingItemReader" 
+		p:entityManagerFactory-ref="entityManagerFactory1"
+		p:queryString="SELECT i FROM Instruction i  WHERE i.bizDay = :bizday" 
+		p:pageSize="100"
+		p:parameterValues-ref="parameterValues" />
+
+	<!-- Important scope="step" for jobParameters -->
+	<util:map id="parameterValues" scope="step">
+		<entry key="bizday" value="#{jobParameters[bizDay]}" />
+	</util:map>
+
+	<!-- Writer -->
+	<bean id="instructionXMLWriter" class="org.springframework.batch.item.xml.StaxEventItemWriter"
+		p:resource="file:outputs/users.xml"
+		p:encoding="ISO-8859-1"
+		p:version="1.0"
+		p:marshaller-ref="instructionXMLMarshaller"
+		p:rootTagName="XML" />
+		<!-- In case of a header and footer 
+		<property name="headerCallback" ref="UserXMLHeaderCallBack" />
+		<property name="footerCallback" ref="UserXMLFooterCallBack" /> 
+		-->
+
+	<!-- In case of a header and footer
+	<bean id="UserXMLHeaderCallBack" class="org.test.writers.UserXMLHeaderCallBack" />
+	<bean id="UserXMLFooterCallBack" class="org.test.writers.UserXMLFooterCallBack" />
+ 	-->
+ 	
+	<bean id="instructionXMLMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>carlosu.batch.domain.contract.SourceReport</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Processor -->
+	<bean id="instructionProcessor" class="carlosu.batch.jobs.readers.InstructionItemProcessor" />
 </beans>

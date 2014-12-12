@@ -8,5 +8,4 @@ import carlosu.batch.domain.contract.Instruction;
 public interface InstructionService {
 
 	List<Instruction> findInstructions(Date bizDate);
-
 }

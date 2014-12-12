@@ -30,7 +30,6 @@ public class InstructionItemReaderMockTest {
 		MockitoAnnotations.initMocks(this);
 
 		reader = new InstructionItemReader();
-		reader.setInstructionDAO(instructionDAO);
 		reader.setItemReader(instructionReader);
 	}
 
