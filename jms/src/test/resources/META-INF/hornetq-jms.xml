@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+	<hornetq-server>
+		<jms-destinations>
+			<jms-queue name="CounterPartyPoller">
+				<entry name="queue/CounterPartyPoller" />
+				<entry name="java:jboss/exported/jms/queue/CounterPartyPoller" />
+			</jms-queue>
+			<jms-queue name="FileProcessor">
+				<entry name="queue/FileProcessor" />
+				<entry name="java:jboss/exported/jms/queue/FileProcessor" />
+			</jms-queue>
+			<jms-queue name="FtpSender">
+				<entry name="queue/FtpSender" />
+				<entry name="java:jboss/exported/jms/queue/FtpSender" />
+			</jms-queue>
+			<jms-queue name="queue">
+				<entry name="mdbtest/queue" />
+				<entry name="java:jboss/mdbtest/queue" />
+			</jms-queue>
+			<jms-queue name="replyQueue">
+				<entry name="mdbtest/replyQueue" />
+				<entry name="java:jboss/mdbtest/replyQueue" />
+			</jms-queue>
+		</jms-destinations>
+	</hornetq-server>
+</messaging-deployment>
+
+            
