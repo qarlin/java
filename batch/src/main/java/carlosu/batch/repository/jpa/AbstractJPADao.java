@@ -22,7 +22,16 @@ public abstract class AbstractJPADao<T, ID> implements AbstractDao<T, ID> {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AbstractJPADao(){
-		ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+		// This works only for one level
+		/*ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+		this.entityClass = ((Class) type.getActualTypeArguments()[0]);*/
+		
+		// This works for more levels
+		Class<?> cls = this.getClass();
+		while (!(cls.getGenericSuperclass() instanceof ParameterizedType)){
+			cls = cls.getSuperclass();
+		}
+		ParameterizedType type = (ParameterizedType) cls.getGenericSuperclass();
 		this.entityClass = ((Class) type.getActualTypeArguments()[0]);
 	}
 
