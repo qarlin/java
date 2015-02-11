@@ -30,7 +30,7 @@
 	<container qualifier="wildfly-managed-debug" default="true">
 		<configuration>
 			<property name="jbossHome">C:\JavaTools\wildfly-8.2.0.Final</property>
-			<property name="javaVmArguments">-agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=y</property>
+			<property name="javaVmArguments">-agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=y -XX:MaxPermSize=512M</property>
             <property name="serverConfig">standalone-full.xml</property>
 		</configuration>
 	</container>
