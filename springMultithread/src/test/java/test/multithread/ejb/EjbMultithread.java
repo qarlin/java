@@ -5,12 +5,12 @@ import static org.junit.Assert.assertNull;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import multithread.ejb.EJBConnection;
 import multithread.ejb.EjbService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,7 +25,7 @@ public class EjbMultithread {
 	@Test
 	public void ContractSingletonConnection() {
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		System.out.println("Singleton Object");
+		System.out.println("Singleton Object - contract1EjbService");
 		System.out.println("----------------");
 		
 		for (int i = 0; i < 10; i++) {
@@ -54,7 +54,7 @@ public class EjbMultithread {
 	@Test
 	public void ContractPrototypeConnection() {
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		System.out.println("Prototype Object");
+		System.out.println("Pool Object - contract2EjbService");
 		System.out.println("----------------");
 		for (int i = 0; i < 10; i++) {
 			executorService.submit(new Runnable() {
@@ -79,19 +79,21 @@ public class EjbMultithread {
 		}
 	}
 
-	
 	@Test
-	public void ClientSingletonConnection() {
+	public void ContractThreadConnection() {
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		System.out.println("Client Singleton Object");
+		System.out.println("Thread Object - contract3EjbService");
 		System.out.println("----------------");
 		for (int i = 0; i < 10; i++) {
 			executorService.submit(new Runnable() {
 				
 				@Override
 				public void run() {
-					EJBConnection conn = (EJBConnection) appContext.getBean("Client1");
-					System.out.println(conn.toString() + " --- " + conn.getInitialContext().toString());
+					@SuppressWarnings("unchecked")
+					EjbService<String, String> contract3EjbService = (EjbService<String, String>) appContext.getBean("contract3EjbService");
+					String response = contract3EjbService.send("", null);
+					assertNull(response);
+					System.out.println(contract3EjbService.getInitialContext());
 				}
 			});
 		}
@@ -105,68 +107,23 @@ public class EjbMultithread {
 		}
 	}
 	
-	@Test
-	public void ClientPrototypeConnection() {
-		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		System.out.println("Client Prototype Object");
-		System.out.println("----------------");
-		for (int i = 0; i < 10; i++) {
-			executorService.submit(new Runnable() {
-				
-				@Override
-				public void run() {
-					EJBConnection conn = (EJBConnection) appContext.getBean("Client2");
-					System.out.println(conn.toString() + " --- " + conn.getInitialContext().toString());
-				}
-			});
-		}
-		executorService.shutdown();
-		while (!executorService.isTerminated()){
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+	@Autowired
+	@Qualifier("contract3EjbService")
+	private EjbService<String, String> contract3EjbService;
 	
 	@Test
-	public void ClientPoolConnection() {
+	public void ContractThreadConnectionAutowired() {
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		System.out.println("Client Pool Object");
+		System.out.println("Thread Object - contract3EjbService Autowired");
 		System.out.println("----------------");
 		for (int i = 0; i < 10; i++) {
 			executorService.submit(new Runnable() {
 				
 				@Override
 				public void run() {
-					EJBConnection conn = (EJBConnection) appContext.getBean("Client2Pool");
-					System.out.println(conn.toString() + " --- " + conn.getInitialContext().toString());
-				}
-			});
-		}
-		executorService.shutdown();
-		while (!executorService.isTerminated()){
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	@Test
-	public void ClientThreadConnection() {
-		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		System.out.println("Client Thread Object");
-		System.out.println("----------------");
-		for (int i = 0; i < 10; i++) {
-			executorService.submit(new Runnable() {
-				
-				@Override
-				public void run() {
-					EJBConnection conn = (EJBConnection) appContext.getBean("Client2Thread");
-					System.out.println(conn.toString() + " --- " + conn.getInitialContext().toString());
+					String response = contract3EjbService.send("", null);
+					assertNull(response);
+					System.out.println(contract3EjbService.getInitialContext());
 				}
 			});
 		}
