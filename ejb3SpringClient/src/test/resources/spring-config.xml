@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+	<context:component-scan base-package="ejb3.stateless" />
+	
+	<util:properties id="remoteEnv">
+		<prop key="java.naming.factory.initial">org.jboss.naming.remote.client.InitialContextFactory</prop>
+		<prop key="java.naming.provider.url">http-remoting://127.0.0.1:8080</prop>
+		<prop key="java.naming.security.principal"></prop>
+		<prop key="java.naming.security.credentials"></prop>
+		<prop key="jboss.naming.client.ejb.context">true</prop>
+		<prop key="java.naming.factory.url.pkgs">org.jboss.naming:org.jnp.interfaces</prop>
+	</util:properties>
+
+<!-- 	
+	<bean id="jndiEjb" class="org.springframework.jndi.JndiTemplate" p:environment-ref="remoteEnv"/>
+	
+	<bean id="HelloService" class="org.springframework.jndi.JndiObjectFactoryBean"
+		p:jndiTemplate-ref="jndiEjb"
+		p:jndiName="ejb3/HelloServiceRemote!ejb3.stateless.HelloServiceRemote" 
+		/>
+		 -->
+	<bean id="ejbConn" class="ejb3.stateless.EjbConnection" scope="prototype" 
+	 p:url="http-remoting://127.0.0.1:8080"
+	 p:user=""
+	 p:password=""
+	 p:factory="org.jboss.naming.remote.client.InitialContextFactory" />
+	
+	<bean id="ejbConnThread" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetSource">
+			<bean class="org.springframework.aop.target.ThreadLocalTargetSource" destroy-method="destroy"
+				p:targetBeanName="ejbConn"/>
+		</property>
+	</bean>	
+	<!-- <jee:jndi-lookup id="HelloService2"
+		jndi-name="ejb3/HelloServiceRemote!ejb3.stateless.HelloServiceRemote"
+		resource-ref="false" environment-ref="remoteEnv" />
+
+	<bean id="HelloService3" class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean">
+	    <property name="jndiName" value="ejb3/HelloServiceRemote!ejb3.stateless.HelloServiceRemote"/>
+	    <property name="businessInterface" value="ejb3.stateless.HelloServiceRemote"/>
+	    <property name="jndiEnvironment" ref="remoteEnv"/>  
+	</bean> -->
+	
+	<jee:remote-slsb id="HelloService3" jndi-name="ejb3/HelloServiceRemote!ejb3.stateless.HelloServiceRemote"
+			business-interface="ejb3.stateless.HelloServiceRemote" environment-ref="remoteEnv"/>
+</beans>
