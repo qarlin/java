@@ -1,11 +1,10 @@
 package ejb3SpringClient;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.junit.Test;
