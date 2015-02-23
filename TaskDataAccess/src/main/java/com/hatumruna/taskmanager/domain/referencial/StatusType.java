@@ -5,6 +5,10 @@ import javax.persistence.Id;
 
 @Entity
 public class StatusType implements IReferenceObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6602281719011820526L;
 	@Id
 	private String code;
 	private String description;

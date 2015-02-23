@@ -157,7 +157,6 @@
 				<dependency>
 					<groupId>org.wildfly</groupId>
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
-					<version>${arquillian-wildfly-version}</version>
 					<scope>test</scope>
 				</dependency>
 				<dependency>

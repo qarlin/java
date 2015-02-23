@@ -7,6 +7,10 @@ import javax.persistence.Id;
 
 @Entity
 public class ViewCategory implements IReferenceObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6051528291552717230L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;

@@ -16,6 +16,10 @@ import com.hatumruna.taskmanager.domain.business.BusinessObject;
 @Entity
 @Indexed
 public class Task extends BusinessObject{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8869074959185828166L;
 	//@Id
 	//@GeneratedValue(strategy=GenerationType.AUTO)
 	//private Long id;

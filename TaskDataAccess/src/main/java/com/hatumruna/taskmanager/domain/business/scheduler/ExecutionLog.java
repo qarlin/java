@@ -17,6 +17,10 @@ import com.hatumruna.taskmanager.domain.lists.ExecutionStatus;
 
 @Entity
 public class ExecutionLog implements IDomainObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5777624964897466506L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;

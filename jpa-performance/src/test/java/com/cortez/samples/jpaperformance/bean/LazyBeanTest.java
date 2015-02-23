@@ -1,6 +1,9 @@
 package com.cortez.samples.jpaperformance.bean;
 
-import com.cortez.samples.jpaperformance.data.LazyEntity;
+import static org.junit.Assert.assertNotNull;
+
+import javax.inject.Inject;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -8,11 +11,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertNotNull;
+import com.cortez.samples.jpaperformance.data.LazyEntity;
 
 /**
  * @author Roberto Cortez
@@ -22,7 +21,7 @@ public class LazyBeanTest {
     @Inject
     private LazyBean lazyBean;
 
-    private static List<String> results = new ArrayList<>();
+    //private static List<String> results = new ArrayList<>();
 
     @Deployment
     public static WebArchive createDeployment() {

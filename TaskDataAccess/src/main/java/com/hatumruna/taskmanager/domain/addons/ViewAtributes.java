@@ -10,6 +10,10 @@ import com.hatumruna.taskmanager.domain.referencial.ViewCategory;
 
 @Entity
 public class ViewAtributes implements IDomainObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3511312024052382043L;
 	@Id
 	private long uid;
 	@ManyToOne

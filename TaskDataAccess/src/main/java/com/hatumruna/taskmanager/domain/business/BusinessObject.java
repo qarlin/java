@@ -24,6 +24,10 @@ import com.hatumruna.taskmanager.domain.referencial.StatusType;
 @Inheritance(strategy=InheritanceType.JOINED)
 @Indexed
 public abstract class BusinessObject implements IDomainObject{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6469320869441756057L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long uid;

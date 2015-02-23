@@ -13,6 +13,10 @@ import com.hatumruna.taskmanager.domain.IDomainObject;
 
 @Entity
 public class Schedule implements IDomainObject {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7851186995736036332L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
