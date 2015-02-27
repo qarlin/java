@@ -13,5 +13,9 @@ public class CertificationTest {
 	public void NoNullPointerTest(){
 		CertificationTest abc = null;
 		assertEquals(abc.sum(5, 10), 15); // no NPE
+		
+		Integer xxx = 1;
+		int xx = xxx.parseInt("123");
+		assertEquals(xx, 123); 
 	}
 }
