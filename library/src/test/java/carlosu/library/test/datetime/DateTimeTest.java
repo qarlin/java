@@ -12,7 +12,6 @@ public class DateTimeTest {
 	public void setUp() throws Exception {
 	}
 
-
 	@Test
 	public void testParseDate(){
 		LocalDate fromDate = LocalDate.parse("2014-01-01");
