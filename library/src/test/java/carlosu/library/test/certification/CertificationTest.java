@@ -8,6 +8,9 @@ public class CertificationTest {
 
 	public static int sum(int i1, int i2) { return i1 + i2; }
 	
+	public CertificationTest(int opt) {
+	}
+	
 	@SuppressWarnings("static-access")
 	@Test
 	public void NoNullPointerTest(){
@@ -17,5 +20,15 @@ public class CertificationTest {
 		Integer xxx = 1;
 		int xx = xxx.parseInt("123");
 		assertEquals(xx, 123); 
+		
+		double x = Double.NEGATIVE_INFINITY;
+		double y = Double.POSITIVE_INFINITY;
+		System.out.print(x-y);
+	}
+	
+	@Test
+	public void ConstructionTest(){
+		// Compile error
+		//CertificationTest test = new CertificationTest();
 	}
 }

@@ -44,7 +44,7 @@
 					<tbody>
 						<tr>
 							<td class="center"><h4>
-									<span class="glyphicon glyphicon-adjust" />
+									<span class="glyphicon glyphicon-adjust"></span>
 								</h4></td>
 							<td>
 								<h4>ACTIVITY</h4>
@@ -60,7 +60,7 @@
 						</tr>
 						<tr>
 							<td><h4>
-									<span class="glyphicon glyphicon-adjust" />
+									<span class="glyphicon glyphicon-adjust"></span>
 								</h4></td>
 							<td>
 								<h4>ACTIVITY</h4>

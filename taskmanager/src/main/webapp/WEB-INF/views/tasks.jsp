@@ -20,9 +20,9 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#"><span class="glyphicon glyphicon-briefcase"> TASK</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-camera"> XXX</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-adjust"> YYY</a></li>
+						<li class="active"><a href="#"><span class="glyphicon glyphicon-briefcase"></span> TASK</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-camera"></span> XXX</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-adjust"></span> YYY</a></li>
 					</ul>
 					<p class="navbar-text navbar-right">
 						<a class="navbar-link" href="?language=en">en</a>
