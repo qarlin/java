@@ -1,40 +1,26 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>net.carlosu</groupId>
-  <artifactId>wildfly-example</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>wildfly-example</name>
-  <modules>
-  	<module>wildfly-example-ejb</module>
-  	<module>wildfly-example-ejb-client</module>
-  </modules>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.carlosu</groupId>
+	<artifactId>wildfly-example</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>wildfly-example</name>
+	<modules>
+		<module>wildfly-example-ejb</module>
+		<module>wildfly-example-ejb-client</module>
+	</modules>
+
+	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-	
-  <dependencies>
-  	<dependency>
-  		<groupId>javax</groupId>
-  		<artifactId>javaee-api</artifactId>
-  		<version>7.0</version>
-  	</dependency>
-  </dependencies>
-  
-    <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-ejb-plugin</artifactId>
-        <version>2.5</version>
-        <configuration>
-         <ejbVersion>3.2</ejbVersion>
-          <!-- this is false by default -->
-          <generateClient>true</generateClient>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+		</dependency>
+	</dependencies>
 </project>
