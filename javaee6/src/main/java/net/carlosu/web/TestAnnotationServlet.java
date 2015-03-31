@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class TestServlet
  */
 @WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+public class TestAnnotationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestServlet() {
+    public TestAnnotationServlet() {
         super();
     }
 

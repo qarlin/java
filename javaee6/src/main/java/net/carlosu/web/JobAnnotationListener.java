@@ -18,13 +18,13 @@ import org.quartz.impl.StdSchedulerFactory;
  *
  */
 @WebListener
-public class JobListener implements ServletContextListener {
+public class JobAnnotationListener implements ServletContextListener {
 	Scheduler scheduler = null;
 
     /**
      * Default constructor. 
      */
-    public JobListener() {
+    public JobAnnotationListener() {
         // TODO Auto-generated constructor stub
     }
 
@@ -63,7 +63,7 @@ public class JobListener implements ServletContextListener {
                 Trigger trigger = TriggerBuilder.newTrigger()
                         .withSchedule(
                                      SimpleScheduleBuilder.simpleSchedule()
-                                     .withIntervalInSeconds(10)
+                                     .withIntervalInSeconds(30)
                                      .repeatForever())
                                                    .build();
                 

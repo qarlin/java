@@ -20,13 +20,13 @@ import org.quartz.impl.StdSchedulerFactory;
  * Servlet implementation class JobServlet
  */
 @WebServlet("/JobServlet")
-public class JobServlet extends HttpServlet {
+public class JobAnnotationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JobServlet() {
+    public JobAnnotationServlet() {
         super();
     }
 
