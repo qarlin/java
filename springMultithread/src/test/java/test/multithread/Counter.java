@@ -1,4 +1,4 @@
-package multithread;
+package test.multithread;
 
 public class Counter {
 	private static ThreadLocal<Integer> counter = new ThreadLocal<Integer>();

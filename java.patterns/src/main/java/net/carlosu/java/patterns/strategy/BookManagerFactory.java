@@ -1,34 +1,40 @@
 package net.carlosu.java.patterns.strategy;
 
-import net.carlosu.java.patterns.specification.ShortNegativeSpecification;
-import net.carlosu.java.patterns.specification.ShortSpecification;
-import net.carlosu.java.patterns.specification.Specification;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookManagerFactory {
-	private ShortNegativeSpecification shortNegativeSpecification;
-	private ShortSpecification shortSpecification;
-	
-	private static final BookManagerFactory INSTANCE = new BookManagerFactory();
+	private static BookManagerFactory INSTANCE = null;
 
+	private List<AbstractBookManager> bookManagers;
+	
 	private BookManagerFactory() {
 	}
 
 	public static BookManagerFactory getInstance() {
+		if (INSTANCE == null) {
+			// Thread Safe. Might be costly operation in some case
+			synchronized (BookManagerFactory.class) {
+				if (INSTANCE == null) {
+					INSTANCE = new BookManagerFactory();
+					INSTANCE.initialize();
+				}
+			}
+		}
 		return INSTANCE;
 	}
-	public BookManager getManager(Trade trade) {
-		Specification<Trade> short01 = shortNegativeSpecification.
-									and(shortSpecification);
-		
-		Specification<Trade> short02 = shortNegativeSpecification.
-									and(shortSpecification);
-		
-		if (short01.isSatisfiedBy(trade))
-			return new LongSellBook();
-		else if (short02.isSatisfiedBy(trade))
-			return new ShortSellBook();
-		else
-			return null;
+	
+	private void initialize() {
+		bookManagers = new ArrayList<AbstractBookManager>();
+		bookManagers.add(new LongSellBook());
+		bookManagers.add(new ShortSellBook());
 	}
 
+	public BookManager getManager(Trade trade) {
+		for (AbstractBookManager bookManager : bookManagers) {
+			if (bookManager.getSpecification().isSatisfiedBy(trade))
+				return bookManager;
+		}
+		return null;
+	}
 }

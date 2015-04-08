@@ -20,13 +20,15 @@
 				<prop key="java.naming.provider.url">${url}</prop>
 				<prop key="java.naming.security.principal">${user}</prop>
 				<prop key="java.naming.security.credentials">${password}</prop>
+				<prop key="jboss.naming.client.ejb.context">true</prop>
+				<prop key="java.naming.factory.url.pkgs">org.jboss.ejb.client.naming</prop>
 			</props>
 		</property>
 	</bean>
 
 	<bean id="ContractRemote" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiTemplate" ref="jndiRemote" />
-		<property name="jndiName" value="ContractEJB#net.carlos.ContractRemote" />
+		<property name="jndiName" value="batch-process-ejb/ContractEJB!ejb.ContractEJBRemote" />
 	</bean>
 
 	<!-- Factory -->

@@ -1,6 +1,6 @@
 package ejb3SpringClient;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,8 +36,8 @@ public class RemoteHelloServiceSpring {
 	
 	@Test
 	public void test() throws NamingException {
-		//assertNotNull(helloService);
-		//assertEquals("Hello", helloService.sayHello());
+		assertNotNull(helloService3);
+		assertEquals("Hello", helloService3.sayHello());
 		
 		assertNotNull(helloService);
 		helloService.execute();

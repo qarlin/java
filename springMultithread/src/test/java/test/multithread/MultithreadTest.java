@@ -3,8 +3,6 @@ package test.multithread;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import multithread.MyThread;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

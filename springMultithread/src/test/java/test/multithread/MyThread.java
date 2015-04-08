@@ -1,4 +1,4 @@
-package multithread;
+package test.multithread;
 
 public class MyThread implements Runnable{
 

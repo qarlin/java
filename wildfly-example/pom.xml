@@ -9,6 +9,7 @@
 	<modules>
 		<module>wildfly-example-ejb</module>
 		<module>wildfly-example-ejb-client</module>
+		<module>wildfly-example-ejb-client2</module>
 	</modules>
 
 	<properties>
