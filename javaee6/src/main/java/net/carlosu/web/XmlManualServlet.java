@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class XmlManualServlet extends HttpServlet {
 
+	private static final long serialVersionUID = -8211838686551282209L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter writer = response.getWriter();
 		writer.write("<html><body>GET/POST response</body></html>");
