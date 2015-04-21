@@ -2,9 +2,13 @@ package process;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import model.Contract;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,9 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import ejbprocess.dao.ContractDAO;
 import ejbprocess.factory.ServiceFactory;
 import ejbprocess.service.BatchService;
-@ContextConfiguration(locations = {"classpath*:spring-config.xml"})
+@ContextConfiguration(classes = SpringConfigurationTest.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CreateServiceTest {
 	@Autowired
@@ -37,7 +42,28 @@ public class CreateServiceTest {
 		BatchService service = factory.getService(instType);
 		assertNotNull(service);
 		
+		service.setContractDAO(getContractDTO());
 		service.execute(context);
 	}
+	
+	private ContractDAO getContractDTO() {
+		ContractDAO contractDAO = new ContractDAO() {
+			
+			@Override
+			public List<Contract> getInstructions(Date date) {
+				List<Contract> contracts = new ArrayList<Contract>();
+				for (int i = 0; i < 30; i++) {
+					Contract c = new Contract();
+					c.setId(i);
+					c.setName("Name" + i);
+					contracts.add(c);
+				}
+				return contracts;
+			}
+		};
+		
+		return contractDAO;
+	}
+	
 
 }

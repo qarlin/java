@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Contract;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
 import ejbprocess.dao.ContractDAO;
-import ejbprocess.model.Contract;
 
 @Component
 public class ContractDAOImpl implements ContractDAO{

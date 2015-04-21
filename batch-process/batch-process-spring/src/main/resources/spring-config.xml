@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 
-	<context:component-scan base-package="ejbprocess" />
-
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
 			<value>classpath:ejb.properties</value>
 		</property>
 	</bean>
-	
-	<!-- EJB Remote Bean -->
-	<bean id="jndiRemote" class="org.springframework.jndi.JndiTemplate">
-		<property name="environment">
-			<props>
-				<prop key="java.naming.factory.initial">${factory}</prop>
-				<prop key="java.naming.provider.url">${url}</prop>
-				<prop key="java.naming.security.principal">${user}</prop>
-				<prop key="java.naming.security.credentials">${password}</prop>
-				<prop key="jboss.naming.client.ejb.context">true</prop>
-				<prop key="java.naming.factory.url.pkgs">org.jboss.ejb.client.naming</prop>
-			</props>
+
+	<util:properties id="env">
+		<prop key="java.naming.factory.initial">org.jboss.naming.remote.client.InitialContextFactory</prop>
+		<prop key="java.naming.provider.url">http-remoting://localhost:8080</prop>
+		<prop key="java.naming.security.principal">ejbuser</prop>
+		<prop key="java.naming.security.credentials">ejbuser</prop>
+		<prop key="jboss.naming.client.ejb.context">true</prop>
+	</util:properties>
+
+	<!-- Localthread EJB Connection -->
+	<bean id="EJBService" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="targetSource">
+			<bean class="org.springframework.aop.target.ThreadLocalTargetSource" destroy-method="destroy">
+				<property name="targetBeanName" value="localContext" />
+			</bean>
 		</property>
 	</bean>
+	
+	<bean id="localContext" class="javax.naming.InitialContext" scope="prototype">
+		<constructor-arg index="0" ref="env" />
+	</bean>
 
+	<!-- EJB Remote Bean, doesn't work with Wildfly -->
+	<bean id="jndiRemote" class="org.springframework.jndi.JndiTemplate">
+		<property name="environment" ref="env" />
+	</bean>
+	
 	<bean id="ContractRemote" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiTemplate" ref="jndiRemote" />
-		<property name="jndiName" value="batch-process-ejb/ContractEJB!ejb.ContractEJBRemote" />
+		<property name="jndiName"
+			value="batch-process-ejb/ContractEJB!ejb.ContractEJBRemote" />
 	</bean>
 
 	<!-- Factory -->
-	<bean id="ServiceFactory" class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
+	<bean id="ServiceFactory"
+		class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
 		<property name="serviceLocatorInterface" value="ejbprocess.factory.ServiceFactory" />
 	</bean>
 
 	<alias name="CreateService" alias="CREATE" />
+
+	<context:component-scan base-package="ejbprocess" />
 </beans>
