@@ -13,8 +13,7 @@ import model.Contract;
 import model.ContractDTO;
 import model.ContractResponseDTO;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -27,8 +26,7 @@ import ejbprocess.transform.TransformData;
 
 @Component("CreateService")
 public class CreateService implements BatchService {
-	private static final Logger logger = LogManager.getLogger(CreateService.class.getName());
-	
+	private static Logger logger = Logger.getLogger(CreateService.class);
 	private static String BEAN = "batch-process-ejb/ContractEJB!ejb.ContractEJBRemote";
 	
 	private ContractDAO contractDAO;
@@ -37,9 +35,6 @@ public class CreateService implements BatchService {
 	@Autowired
 	@Qualifier("EJBRemoteService")
 	private EJBService<ContractEJBRemote> ejbService;
-	@Autowired
-	@Qualifier("ContractRemote")
-	private ContractEJBRemote remote;
 	
 	@Override
 	public void execute(Map<String, Object> context) {
@@ -47,7 +42,7 @@ public class CreateService implements BatchService {
 		
 		// Loading Data
 		List<Contract> list = contractDAO.getInstructions(date);
-		logger.debug("Get Instructions for date {}, Instructions: {} ", date, list.size());
+		logger.debug("Get Instructions for date " + date +  " Instructions: " + list.size());
 
 		// Transform Data
 		List<ContractDTO> transformed = new ArrayList<ContractDTO>();
@@ -60,30 +55,32 @@ public class CreateService implements BatchService {
 		List<Future<ContractResponseDTO>> futures = new ArrayList<Future<ContractResponseDTO>>(transformed.size());
 		
 		for (final ContractDTO contractDTO : transformed) {
-			Future<ContractResponseDTO> future = executorService.submit(new Callable<ContractResponseDTO>() {
-
-				@Override
-				public ContractResponseDTO call() throws Exception {
-					ContractEJBRemote remote = ejbService.getBean(BEAN);
-					logger.debug("Context: {} - Bean: {} ", ejbService.getContext(), remote);
-					ContractResponseDTO response = remote.create(contractDTO);
-					return response;
-				}
-			});
-			futures.add(future);
-			
+			futures.add(beanCalled(executorService, contractDTO));
 		}
 		
 		executorService.shutdown();
 		while(!executorService.isTerminated()){}
 		
-		
+		logger.debug("Finished!");
 		// Transform Data
 		
 		// Save Data
 		
 	}
 	
+	public Future<ContractResponseDTO> beanCalled(ExecutorService executorService, final ContractDTO contractDTO){
+		Future<ContractResponseDTO> future = executorService.submit(new Callable<ContractResponseDTO>() {
+
+			@Override
+			public ContractResponseDTO call() throws Exception {
+				ContractEJBRemote remote = ejbService.getBean(BEAN);
+				logger.debug("Context: " + ejbService.getContext() + " - Bean: " + remote);
+				ContractResponseDTO response = remote.create(contractDTO);
+				return response;
+			}
+		});
+		return future;
+	}
 	@Autowired
 	public void setContractDAO(ContractDAO contractDAO){
 		this.contractDAO = contractDAO;

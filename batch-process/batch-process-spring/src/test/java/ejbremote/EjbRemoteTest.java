@@ -27,8 +27,8 @@ import ejb.ContractEJBRemote;
 @ContextConfiguration(locations = {"classpath*:spring-config.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class EjbRemoteTest {
-	@Autowired
-	private ContractEJBRemote remoteObject;
+	//@Autowired
+	//private ContractEJBRemote remoteObject;
 	@Autowired
 	private JndiTemplate jndiRemote;
 	
@@ -44,6 +44,8 @@ public class EjbRemoteTest {
 		jndiProps.put(Context.SECURITY_PRINCIPAL, "ejbuser");  
 		jndiProps.put(Context.SECURITY_CREDENTIALS, "ejbuser");
 		jndiProps.put("jboss.naming.client.ejb.context", true);
+		jndiProps.put("remote.connection.default.connect.options.org.jboss.remoting3.RemotingOptions.HEARTBEAT_INTERVAL", 1000);
+		
 		
 		// create a context passing these properties  
 		Context ctx = new InitialContext(jndiProps);  
@@ -64,8 +66,8 @@ public class EjbRemoteTest {
 	@Test
 	@Ignore
 	public void SpringEjbRemoteTest() {
-		assertNotNull(remoteObject);
-		assertEquals("Done", remoteObject.test());
+		//assertNotNull(remoteObject);
+		//assertEquals("Done", remoteObject.test());
 	}
 	
 	@Test
@@ -77,6 +79,7 @@ public class EjbRemoteTest {
 		jndiProps.put(Context.SECURITY_PRINCIPAL, "ejbuser");  
 		jndiProps.put(Context.SECURITY_CREDENTIALS, "ejbuser");
 		jndiProps.put("jboss.naming.client.ejb.context", true);
+		jndiProps.put("remote.connection.default.connect.options.org.jboss.remoting3.RemotingOptions.HEARTBEAT_INTERVAL", 1000);
 		
 		JndiTemplate template = new JndiTemplate(jndiProps);
 		

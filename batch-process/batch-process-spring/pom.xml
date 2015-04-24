@@ -16,8 +16,9 @@
 		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
 		<version.wildfly>8.2.0.Final</version.wildfly>
 		<version.jboss.spec.javaee.7.0>1.0.0.Final</version.jboss.spec.javaee.7.0>
+        <javasimon.version>4.0.0</javasimon.version>
 	</properties>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- Define the version of JBoss' Java EE 7 APIs we want to use -->
@@ -43,7 +44,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -68,7 +69,7 @@
 		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
-			</dependency>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -80,9 +81,28 @@
 			<type>pom</type>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.1</version>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.8.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jamonapi</groupId>
+			<artifactId>jamon</artifactId>
+			<version>2.81</version>
 		</dependency>
 	</dependencies>
 </project>
