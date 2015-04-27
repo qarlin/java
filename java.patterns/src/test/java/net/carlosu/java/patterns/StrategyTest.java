@@ -1,14 +1,14 @@
 package net.carlosu.java.patterns;
 
-import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
+import net.carlosu.java.patterns.strategy.java.BookService;
+import net.carlosu.java.patterns.strategy.java.BookServiceImpl;
+import net.carlosu.java.patterns.strategy.java.bookmanager.BookManager;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.LongSellBook;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.ShortSellBook;
+import net.carlosu.java.patterns.strategy.model.Trade;
 
-import net.carlosu.java.patterns.strategy.BookManager;
-import net.carlosu.java.patterns.strategy.BookService;
-import net.carlosu.java.patterns.strategy.BookServiceImpl;
-import net.carlosu.java.patterns.strategy.LongSellBook;
-import net.carlosu.java.patterns.strategy.ShortSellBook;
-import net.carlosu.java.patterns.strategy.Trade;
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class StrategyTest{
 

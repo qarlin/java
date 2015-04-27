@@ -14,6 +14,7 @@ public class ChainResponsabilityTest {
          PrinterChain printerChain = (PrinterChain) context.getBean("printerChain");
          printerChain.introduceUser(new User("Marco Castigliego", 'M'));
          printerChain.introduceUser(new User("Julie Marot", 'F'));
+         context.close();
 	}
 
 }

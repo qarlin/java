@@ -1,11 +1,13 @@
-package net.carlosu.java.patterns.strategy;
+package net.carlosu.java.patterns.strategy.java;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import net.carlosu.java.patterns.strategy.annotation.BookServiceAnnotation;
+import net.carlosu.java.patterns.strategy.java.bookmanager.BookManager;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.LongSellBook;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.ShortSellBook;
 
 public class BookManagerConfiguration {
 	@Inject

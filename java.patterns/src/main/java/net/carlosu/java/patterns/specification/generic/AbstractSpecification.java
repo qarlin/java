@@ -1,4 +1,5 @@
-package net.carlosu.java.patterns.specification;
+package net.carlosu.java.patterns.specification.generic;
+
 
 public abstract class AbstractSpecification<T> implements Specification<T> {
 	

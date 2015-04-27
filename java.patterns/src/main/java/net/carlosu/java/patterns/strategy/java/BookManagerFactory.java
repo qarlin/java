@@ -1,7 +1,13 @@
-package net.carlosu.java.patterns.strategy;
+package net.carlosu.java.patterns.strategy.java;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import net.carlosu.java.patterns.strategy.java.bookmanager.AbstractBookManager;
+import net.carlosu.java.patterns.strategy.java.bookmanager.BookManager;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.LongSellBook;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.ShortSellBook;
+import net.carlosu.java.patterns.strategy.model.Trade;
 
 public class BookManagerFactory {
 	private static BookManagerFactory INSTANCE = null;

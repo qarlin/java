@@ -1,4 +1,7 @@
-package net.carlosu.java.patterns.strategy;
+package net.carlosu.java.patterns.strategy.java;
+
+import net.carlosu.java.patterns.strategy.java.bookmanager.BookManager;
+import net.carlosu.java.patterns.strategy.model.Trade;
 
 public class BookServiceImpl implements BookService {
 

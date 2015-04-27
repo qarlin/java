@@ -1,12 +1,12 @@
 package net.carlosu.java.patterns;
 
 import static org.junit.Assert.assertTrue;
-import net.carlosu.java.patterns.specification.LongSellSpecification;
-import net.carlosu.java.patterns.specification.ShortNegativeSpecification;
-import net.carlosu.java.patterns.specification.ShortPositionSpecification;
-import net.carlosu.java.patterns.specification.ShortSpecification;
-import net.carlosu.java.patterns.specification.Specification;
-import net.carlosu.java.patterns.strategy.Trade;
+import net.carlosu.java.patterns.specification.generic.Specification;
+import net.carlosu.java.patterns.specification.tradespecification.LongSellSpecification;
+import net.carlosu.java.patterns.specification.tradespecification.ShortNegativeSpecification;
+import net.carlosu.java.patterns.specification.tradespecification.ShortPositionSpecification;
+import net.carlosu.java.patterns.specification.tradespecification.ShortSpecification;
+import net.carlosu.java.patterns.strategy.model.Trade;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;

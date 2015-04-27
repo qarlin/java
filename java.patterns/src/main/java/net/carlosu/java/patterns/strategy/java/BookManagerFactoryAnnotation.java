@@ -1,15 +1,15 @@
-package net.carlosu.java.patterns.strategy.annotation;
+package net.carlosu.java.patterns.strategy.java;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import net.carlosu.java.patterns.strategy.AbstractBookManager;
-import net.carlosu.java.patterns.strategy.BookManager;
-import net.carlosu.java.patterns.strategy.LongSellBook;
-import net.carlosu.java.patterns.strategy.ShortSellBook;
-import net.carlosu.java.patterns.strategy.Trade;
+import net.carlosu.java.patterns.strategy.java.bookmanager.AbstractBookManager;
+import net.carlosu.java.patterns.strategy.java.bookmanager.BookManager;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.LongSellBook;
+import net.carlosu.java.patterns.strategy.java.bookmanager.impl.ShortSellBook;
+import net.carlosu.java.patterns.strategy.model.Trade;
 
 public class BookManagerFactoryAnnotation {
 	private static BookManagerFactoryAnnotation INSTANCE = null;

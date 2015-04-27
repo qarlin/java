@@ -1,4 +1,4 @@
-package net.carlosu.java.patterns.specification;
+package net.carlosu.java.patterns.specification.generic;
 
 public interface Specification<T> {
 	boolean isSatisfiedBy(T t);

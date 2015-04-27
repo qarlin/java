@@ -1,10 +1,9 @@
-package net.carlosu.java.patterns.strategy.annotation;
+package net.carlosu.java.patterns.strategy.java;
 
 import java.util.List;
 
-import net.carlosu.java.patterns.strategy.BookManager;
-import net.carlosu.java.patterns.strategy.BookService;
-import net.carlosu.java.patterns.strategy.Trade;
+import net.carlosu.java.patterns.strategy.java.bookmanager.BookManager;
+import net.carlosu.java.patterns.strategy.model.Trade;
 
 public class BookServiceAnnotation implements BookService{
 	List<BookManager> bookManagers;

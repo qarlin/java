@@ -1,4 +1,5 @@
-package net.carlosu.java.patterns.specification;
+package net.carlosu.java.patterns.specification.generic;
+
 
 public class AndSpecification<T> extends AbstractSpecification<T> {
 	private Specification<T> spec1;
