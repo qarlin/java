@@ -31,4 +31,15 @@ public class CertificationTest {
 		// Compile error
 		//CertificationTest test = new CertificationTest();
 	}
+	
+	@Test
+	public void operatorTest(){
+		int x = 6;
+		long y = 8;
+		long z = x + y;
+		
+		short a = 5;
+		short b = 7;
+		int c = a + b;
+	}
 }
