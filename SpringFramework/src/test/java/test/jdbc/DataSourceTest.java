@@ -9,22 +9,22 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import jdbc.AppConfiguration;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
+import test.jdbc.conf.DataSourceTestConfig;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class,
-classes={AppConfiguration.class})
-@ActiveProfiles("test")
+classes={DataSourceTestConfig.class})
 public class DataSourceTest {
 	@Autowired
+	@Qualifier("dataSource")
 	private DataSource datasource;
 	
 	@Test

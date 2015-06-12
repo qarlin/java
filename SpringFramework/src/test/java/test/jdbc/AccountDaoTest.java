@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import jdbc.AppConfiguration;
 import jdbc.dao.AccountDao;
 import jdbc.model.Account;
 
@@ -16,15 +15,15 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
+import test.jdbc.conf.DataSourceTestConfig;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class,
-	classes={AppConfiguration.class})
-@ActiveProfiles("test")
+	classes={DataSourceTestConfig.class})
 public class AccountDaoTest {
 	private static final Logger logger = LogManager.getLogger();
 	
