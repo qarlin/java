@@ -34,7 +34,7 @@ public class MonitoringService implements IMonitoringService, NotificationPublis
     }
 
 	private Notification buildNotification(boolean isDbServicesEnabled2, boolean dbServicesEnabled) {
-		final String notificationType = "dustin.jmx.spring.notification.example";
+		final String notificationType = "jmx.spring.notification.test";
 	      final String message = "Converting " + isDbServicesEnabled2 + " to " + dbServicesEnabled;
 	      final Notification notification =
 	         new Notification( notificationType,
