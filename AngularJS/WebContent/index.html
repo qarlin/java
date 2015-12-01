@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+	<meta charset="UTF-8">
+	<title>App Example</title>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/controllers/mycontroller.js"></script>
+</head>
+<body>
+	<div ng-controller="appController">
+		<p>{{firstName}}</p>
+		<p>{{lastName}}</p>
+		
+		<a href="#" ng-click="setName('John', 'Doe')">setName</a>
+	</div>
+</body>
+</html>
