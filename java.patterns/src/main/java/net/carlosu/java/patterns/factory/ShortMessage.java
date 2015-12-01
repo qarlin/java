@@ -1,5 +1,9 @@
 package net.carlosu.java.patterns.factory;
 
+import javax.enterprise.context.Dependent;
+
+@Message(Message.Type.SHORT)
+@Dependent
 public class ShortMessage implements MessageType {
 	
 	private String message;

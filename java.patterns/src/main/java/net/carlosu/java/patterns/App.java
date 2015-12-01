@@ -6,8 +6,7 @@ package net.carlosu.java.patterns;
  */
 public class App 
 {
-	private int list;
-	private String olk;
+	protected int list;
 	
     public static void main( String[] args )
     {
@@ -17,5 +16,4 @@ public class App
     	double d1 = 4;
     	System.out.print(d1);
     }
-    public void App(){}
 }
