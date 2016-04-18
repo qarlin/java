@@ -11,8 +11,7 @@
 		<module>pa-evaluation-datalayer</module>
 		<module>pa-evaluation-service</module>
 		<module>pa-evaluation-WS</module>
-		<module>pa-evaluation-web</module>
-    <module>pa-evaluation-ui</module>
+    	<module>pa-evaluation-ui</module>
   </modules>
 
 	<parent>

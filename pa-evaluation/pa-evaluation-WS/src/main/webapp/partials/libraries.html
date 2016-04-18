@@ -1,0 +1,15 @@
+<a ui-sref="newLibrary" class="btn-primary btn-lg nodecoration">Add New Library</a>
+
+<table class="table librarytable">
+  <tr>
+    <td><h3>All Libraries</h3></td>
+    <td></td>
+  </tr>
+  <tr ng-repeat="library in libraries">
+    <td>{{library.name}}</td>
+    <td>
+      <a class="btn btn-primary" ui-sref="viewLibrary({id:library.id})">View</a>
+      <a class="btn btn-danger"  ng-click="deleteLibrary(library)">Delete</a>
+    </td>
+  </tr>
+</table>
