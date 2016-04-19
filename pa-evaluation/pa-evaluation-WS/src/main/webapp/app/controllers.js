@@ -1,5 +1,5 @@
 angular.module('myApp.controllers', ['ngResource','myApp.services'])
- .controller('LibraryListController', function($scope, $state, $window, ModalService, Library) {
+ .controller('LibraryListController', function($scope, $state, $window, Library) {
   $scope.libraries = Library.query(); //fetch all movies. Issues a GET to /api/movies
 
   $scope.deleteLibrary = function(library) { // Delete a movie. Issues a DELETE to /api/movies/:id

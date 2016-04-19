@@ -1,4 +1,4 @@
-var app = angular.module('myApp',['ui.router', 'angularModalService', 'ngResource', 'myApp.controllers', 'myApp.services']);
+var app = angular.module('myApp',['ui.router', 'ngResource', 'myApp.controllers', 'myApp.services']);
 
 app.config(function($stateProvider,$httpProvider) {
   $stateProvider.state('libraries', { // state for showing all movies
