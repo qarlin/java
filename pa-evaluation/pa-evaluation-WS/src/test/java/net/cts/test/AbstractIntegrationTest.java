@@ -1,5 +1,6 @@
 package net.cts.test;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,10 +15,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import net.cts.WSJerseyApplication;
+import net.cts.WSApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = WSJerseyApplication.class)
+@SpringApplicationConfiguration(classes = WSApplication.class)
 @WebIntegrationTest(randomPort = true)
 public abstract class AbstractIntegrationTest {
 

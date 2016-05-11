@@ -1,5 +1,6 @@
 package net.cts.test;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import org.junit.Test;
 
 import net.cts.model.Library;
 
-public class LibraryJerseyControllerTest extends AbstractIntegrationTest {
+public class LibraryControllerTest extends AbstractIntegrationTest {
 
 	@Test
 	public void library() {
