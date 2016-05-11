@@ -11,7 +11,7 @@ angular.module('myApp.controllers', ['ngResource','myApp.services'])
   };
 
 }).controller('LibraryViewController', function($scope, $stateParams, Library) {
-  $scope.library = Library.get({ id: $stateParams.id }); //Get a single movie.Issues a GET to /api/movies/:id
+  $scope.library = Library.get({ id: $stateParams.id }); //Get a single library a GET to /library/:id
 
 }).controller('LibraryCreateController', function($scope, $state, $stateParams, Library) {
   $scope.library = new Library();  //create new movie instance. Properties will be set via ng-model on UI
