@@ -4,15 +4,20 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import net.cts.model.Library;
@@ -28,6 +33,25 @@ public class LibraryJerseyController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Library> getLibraries() {
 		return service.findAll();
+	}
+	
+	@GET
+	@Path("/page")
+	@Produces(MediaType.APPLICATION_JSON)
+    public Page<Library> findAll(
+            @QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("size") @DefaultValue("20") int size,
+            @QueryParam("sort") @DefaultValue("name") List<String> sort,
+            @QueryParam("direction") @DefaultValue("asc") String direction) {
+
+        return service.findAll(
+                new PageRequest(
+                        page,
+                        size,
+                        Sort.Direction.fromString(direction),
+                        sort.toArray(new String[0])
+                )
+        );
 	}
 	
 	@GET

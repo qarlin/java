@@ -9,6 +9,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,11 @@ public abstract class AbstractIntegrationTest {
     	return entity.getBody();
     }
     
+	protected <T> Page<T> getRESTPage(String uri, Map<String, String> map){
+    	ResponseEntity<RestResponsePage<T>> entity = restTemplate.exchange(getBaseUrl() + uri, HttpMethod.GET, null, new ParameterizedTypeReference<RestResponsePage<T>>(){});
+    	return entity.getBody();
+    }
+	
     protected <T> T postRESTEntity(String uri, Class<T> serviceReturnTypeClass, T objectToPost){
     	HttpEntity<T> request = new HttpEntity<T>(objectToPost);
         ResponseEntity<T> response = restTemplate.exchange(getBaseUrl() + uri, HttpMethod.POST, request, serviceReturnTypeClass);
