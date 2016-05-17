@@ -7,5 +7,6 @@ import org.springframework.context.annotation.Configuration;
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
         register(LibraryJerseyController.class);
+        register(LibraryJerseyHATEOASController.class);
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,7 @@ public abstract class AbstractIntegrationTest {
 	@Value("${local.server.port}")
 	private int port;
 
-	private String getBaseUrl() {
+	protected String getBaseUrl() {
 		return "http://localhost:" + port;
 	}
 

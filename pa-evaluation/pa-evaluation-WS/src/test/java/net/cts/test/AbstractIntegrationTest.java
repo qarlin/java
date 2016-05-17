@@ -26,7 +26,7 @@ public abstract class AbstractIntegrationTest {
 	@Value("${local.server.port}")
 	private int port;
 
-	private String getBaseUrl() {
+	protected String getBaseUrl() {
 		return "http://localhost:" + port;
 	}
 
