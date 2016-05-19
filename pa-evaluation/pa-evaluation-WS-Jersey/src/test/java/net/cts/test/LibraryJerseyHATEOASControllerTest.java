@@ -49,10 +49,10 @@ public class LibraryJerseyHATEOASControllerTest extends AbstractIntegrationTest 
 		//ObjectMapper to convert from JSON to Object
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
-			Resource<Library> customer = objectMapper.readValue(nodes.traverse(),
+			Resource<Library> libraryObj = objectMapper.readValue(nodes.traverse(),
 					new TypeReference<Resource<Library>>() {
 					});
-			assertThat(customer).isNotNull();
+			assertThat(libraryObj).isNotNull();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
