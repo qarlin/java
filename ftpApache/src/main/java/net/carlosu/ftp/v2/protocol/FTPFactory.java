@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import net.carlosu.ftp.customer.Customer;
+import net.carlosu.ftp.v3.connection.ObjectPool;
 
 import org.apache.commons.net.ftp.FTPClient;
 
@@ -82,6 +83,10 @@ public class FTPFactory {
 		if ("apache".equals(ftpClient)) {
 			return getApacheFtpProtocol(customer);
 		}
+		return null;
+	}
+	public ObjectPool<?> getConnection(String server, String port, String user) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
