@@ -1,0 +1,94 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch  
+          http://www.springframework.org/schema/batch/spring-batch-2.2.xsd  
+          http://www.springframework.org/schema/beans   
+          http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<import resource="../config/context.xml" />
+
+	<bean id="domain" class="com.Domain" />
+	<bean id="asyncTaskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
+	<bean id="partitioner" class="com.multithread.MakePartition" />
+	<bean id="distributeFiles" class="com.multithread.DistributeFiles" scope="step">
+		<property name="dataDirectory" value="file:csv/input" />
+		<property name="numberOfPartitions" value="#{jobParameters['numberOfPartitions']}" />
+	</bean>
+	<bean id="noOpWriter" class="com.multithread.NoOpItemWriter" />
+	
+	<job id="readMultiFileJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="organizeFilesStep" next="step2">
+			<tasklet ref="distributeFiles" />			
+		</step>
+		<step id="step2">
+			<partition step="worker" partitioner="partitioner" handler="orderPartitionHandler"/>
+		</step>
+	</job>
+	
+	<batch:step id="worker">
+		<batch:tasklet>
+			<batch:chunk reader="multiResourceReader" 
+				writer="flatFileItemWriter" commit-interval="15">
+			</batch:chunk>
+		</batch:tasklet>
+	</batch:step>
+
+	<bean id="orderPartitionHandler"
+		class="org.springframework.batch.core.partition.support.TaskExecutorPartitionHandler"
+		scope="step">
+		<property name="taskExecutor" ref="asyncTaskExecutor" />
+		<property name="step" ref="worker" />
+		<property name="gridSize" value="#{jobParameters['numberOfPartitions']}" />
+	</bean>
+
+	<bean id="multiResourceReader"
+		class=" org.springframework.batch.item.file.MultiResourceItemReader" scope="step">
+		<property name="resources" value="file:csv/input/tmp/#{stepExecutionContext['partitionNo']}/*.csv" />
+		<property name="delegate" ref="flatFileItemReader" />
+	</bean>
+	
+	<bean id="flatFileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean
+						class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="id, domain" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean
+						class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="prototypeBeanName" value="domain" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>	
+	
+	<bean id="multiResourceWriter"
+		class=" org.springframework.batch.item.file.MultiResourceItemWriter" scope="step">
+		<property name="resource" value="file:csv/output/#{stepExecutionContext['partitionNo']}" />
+		<property name="delegate" ref="flatFileItemWriter" />
+        <property name="saveState" value="true"/> 
+        <property name="itemCountLimitPerResource" value="50000"/> 
+	</bean>
+	
+	<bean id="flatFileItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
+		<property name="shouldDeleteIfExists" value="true"/> 
+		<property name="resource" value="file:csv/output/dd.txt" />
+		<property name="lineAggregator">
+			<bean
+				class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+				<property name="delimiter" value="," />
+				<property name="fieldExtractor">
+					<bean
+						class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+						<property name="names" value="id, domain" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>  

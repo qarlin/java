@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+				  xmlns:gs="http://carlosu.net/ws/model">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gs:getCountryRequest>
+         <gs:name>Spain</gs:name>
+      </gs:getCountryRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

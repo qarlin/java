@@ -18,11 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-@Configuration
-@PropertySource("classpath:application.properties")
-@EnableJpaRepositories
-@EnableTransactionManagement
-public class PersistenceContext {
+public abstract class PersistenceContext {
 
 	@Bean(destroyMethod = "close")
 	DataSource dataSource(Environment env) {
@@ -40,7 +36,7 @@ public class PersistenceContext {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("net.carlosu.springdata");
+        entityManagerFactoryBean.setPackagesToScan(getPackage());
  
         Properties jpaProperties = new Properties();
      
@@ -83,4 +79,6 @@ public class PersistenceContext {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+	
+	protected abstract String getPackage();
 }

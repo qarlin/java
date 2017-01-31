@@ -2,13 +2,13 @@ package net.carlosu.springdata.todo.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.carlosu.springdata.repository.BaseRepository;
 import net.carlosu.springdata.todo.model.Todo;
 
-public interface TodoRepository extends BaseRepository<Todo, Long>{
+public interface TodoRepository extends JpaRepository<Todo, Long>{
 
     Todo findById(Long id);
     

@@ -1,4 +1,4 @@
-package net.carlosu.springdata.test;
+package net.carlosu.springdata.test.todo;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -12,11 +12,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import net.carlosu.springdata.PersistenceContext;
+import net.carlosu.springdata.PersistenceContextToDo;
 import net.carlosu.springdata.todo.repository.TodoRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class,
-classes={PersistenceContext.class})
+classes={PersistenceContextToDo.class})
 public class ApplicationConfigJUnitTest {
 
 	@Autowired

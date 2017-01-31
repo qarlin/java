@@ -1,4 +1,4 @@
-package net.carlosu.springdata.repository;
+package net.carlosu.springdata.permission.repository;
 
 import java.io.Serializable;
 import java.util.List;

@@ -16,11 +16,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import net.carlosu.springdata.PersistenceContext;
+import net.carlosu.springdata.PersistenceContextToDo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader=AnnotationConfigContextLoader.class,
-classes={PersistenceContext.class})
+classes={PersistenceContextToDo.class})
 @Transactional
 public abstract class AbstractIntegrationTest {
 

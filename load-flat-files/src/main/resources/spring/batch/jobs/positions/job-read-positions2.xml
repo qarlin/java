@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch 
+	http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	">
+
+	<import resource="../../config/context.xml" />
+
+	<bean id="inventoryFilePartitioner"
+		class="com.positions.multipartition.MultiFileResourcePartitioner"
+		scope="step">
+		<property name="inboundDir" value="file:csv/input/positions" />
+	</bean>
+
+	<batch:step id="inventoryLoadStep" xmlns="http://www.springframework.org/schema/batch">
+		<batch:tasklet>
+			<batch:chunk reader="inventoryLoadReader" writer="flatFileItemWriter"
+				commit-interval="5" />
+		</batch:tasklet>
+	</batch:step>
+
+	<bean name="inventoryLoadReader" scope="step"
+		class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="resource" value="#{stepExecutionContext['fileResource']}" />
+		<property name="lineMapper" ref="inventoryLineMapper" />
+		<property name="linesToSkip" value="1" />
+	</bean>
+
+	<bean name="inventoryLineMapper"
+		class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+		<property name="lineTokenizer">
+			<bean
+				class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" />
+		</property>
+		<property name="fieldSetMapper">
+			<bean class="com.positions.PositionMapper" />
+		</property>
+	</bean>
+
+	<batch:job id="InventoryLoader">
+		<batch:step id="partitionedInventoryLoadStep">
+			<batch:partition step="inventoryLoadStep"
+				partitioner="inventoryFilePartitioner">
+				<batch:handler grid-size="2" task-executor="inventoryLoadTaskExecutor" />
+			</batch:partition>
+		</batch:step>
+	</batch:job>
+
+	<bean id="inventoryLoadTaskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="2" />
+		<property name="maxPoolSize" value="2" />
+		<property name="allowCoreThreadTimeOut" value="true" />
+	</bean>
+
+	<bean id="flatFileItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter"
+		scope="step">
+		<property name="resource"
+			value="file:csv/output/#{stepExecutionContext['resultFileName']}.result" />
+		<property name="appendAllowed" value="false" />
+		<property name="shouldDeleteIfExists" value="true"/> 
+		<property name="lineAggregator">
+			<bean
+				class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+				<property name="delimiter" value="," />
+				<property name="fieldExtractor">
+					<bean
+						class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+						<property name="names" value="securityId, clientId" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>
+
