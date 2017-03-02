@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>TaskManagerMVC</name>
+	<name>taskmanager</name>
 	<comment></comment>
 	<projects>
-		<project>TaskDataAccess</project>
+		<project>task-data-access</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
