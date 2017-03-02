@@ -5,14 +5,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Thread.State;
 
-import org.junit.Test;
-
 import concurrency.chapter01.Calculator;
 
 public class ThreadInformationTest {
 
-	@Test
-	public void test() throws InterruptedException {
+	public static void main(String... strings ) throws InterruptedException {
 		Thread[] threads = new Thread[10];
 		Thread.State[] status = new Thread.State[10];
 		

@@ -1,13 +1,10 @@
 package test.concurrency.chapter01;
 
-import org.junit.Test;
-
 import concurrency.chapter01.PrimeGenerator;
 
 public class PrimeGeneratorTest {
 
-	@Test
-	public void test() {
+	public static void main(String... strings ) {
 		Thread task = new PrimeGenerator();
 		task.start();
 		

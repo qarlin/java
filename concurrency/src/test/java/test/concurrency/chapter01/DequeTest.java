@@ -3,16 +3,13 @@ package test.concurrency.chapter01;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import org.junit.Test;
-
 import concurrency.chapter01.CleanerTask;
 import concurrency.chapter01.Event;
 import concurrency.chapter01.WriterTask;
 
 public class DequeTest {
 
-	@Test
-	public void test() {
+	public static void main(String... strings ) {
 		Deque<Event> deque = new ArrayDeque<Event>();
 		
 		WriterTask writer = new WriterTask(deque);

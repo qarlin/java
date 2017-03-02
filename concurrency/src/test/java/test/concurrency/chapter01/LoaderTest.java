@@ -5,7 +5,6 @@ import java.util.Date;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
 
 import concurrency.chapter01.DataSourceLoader;
 import concurrency.chapter01.NetworkConnectionLoader;
@@ -13,8 +12,7 @@ import concurrency.chapter01.NetworkConnectionLoader;
 public class LoaderTest {
 	private static final Logger logger = LogManager.getLogger();
 	
-	@Test
-	public void test() {
+	public static void main(String... strings ) {
 		Thread thread1 = new Thread(new DataSourceLoader(), "DataSourceThread");
 		Thread thread2 = new Thread(new NetworkConnectionLoader(), "NetworkConnectionThread");
 		

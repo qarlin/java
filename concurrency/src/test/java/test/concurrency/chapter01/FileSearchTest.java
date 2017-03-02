@@ -2,14 +2,11 @@ package test.concurrency.chapter01;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
-
 import concurrency.chapter01.FileSearch;
 
 public class FileSearchTest {
 
-	@Test
-	public void test() {
+	public static void main(String... strings ) {
 		FileSearch searcher = new FileSearch("c:\\", "autoexec.bat");
 		Thread thread = new Thread(searcher);
 		thread.start();
