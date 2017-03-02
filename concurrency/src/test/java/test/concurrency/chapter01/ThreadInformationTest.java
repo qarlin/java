@@ -1,15 +1,18 @@
-package test.concurrency;
+package test.concurrency.chapter01;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Thread.State;
 
-import concurrency.Calculator;
+import org.junit.Test;
 
-public class ThreadInformation {
+import concurrency.chapter01.Calculator;
 
-	public static void main(String[] args) throws InterruptedException {
+public class ThreadInformationTest {
+
+	@Test
+	public void test() throws InterruptedException {
 		Thread[] threads = new Thread[10];
 		Thread.State[] status = new Thread.State[10];
 		
