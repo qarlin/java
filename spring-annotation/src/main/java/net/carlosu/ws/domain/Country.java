@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="population" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="capital" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="currency" type="{http://carlosu.net/ws/domain}currency"/>
+ *         &lt;element name="currency" type="{http://carlosu.net/ws/model}currency"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

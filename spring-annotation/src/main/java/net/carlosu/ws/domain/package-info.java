@@ -5,5 +5,5 @@
 // Generated on: 2016.02.01 at 03:25:29 PM EST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://carlosu.net/ws/domain", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://carlosu.net/ws/model", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package net.carlosu.ws.domain;

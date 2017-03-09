@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="country" type="{http://carlosu.net/ws/domain}country"/>
+ *         &lt;element name="country" type="{http://carlosu.net/ws/model}country"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
