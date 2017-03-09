@@ -1,0 +1,5 @@
+<ns2:UserDetailsResponse
+  xmlns:ns2="http://localhost:8080/ws/model">
+  <ns2:FirstName>Lubos</ns2:FirstName>
+  <ns2:LastName>Krnac</ns2:LastName>
+</ns2:UserDetailsResponse>
